@@ -7,33 +7,46 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
     body {
       background-color: #f8f9fa;
-      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .header {
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: white;
-      padding: 40px 0;
-      margin-bottom: 30px;
+      padding: 20px 0;
+      flex-shrink: 0;
     }
     .search-filter-container {
       background: white;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .employee-table-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 10px;
     }
     .employee-table {
       background: white;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      width: 100%;
     }
     .employee-table th {
       background-color: #6a11cb;
       color: white;
       cursor: pointer;
+      padding: 12px;
     }
     .employee-table th:hover {
       background-color: #5a0bb5;
@@ -54,10 +67,12 @@
     .pagination {
       justify-content: center;
       margin-top: 20px;
+      flex-shrink: 0;
     }
     .navbar {
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
     }
     .navbar-brand, .nav-link {
       color: white !important;
@@ -65,45 +80,62 @@
     .nav-link:hover {
       color: #f1f1f1 !important;
     }
+    container-fluid {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+    .main-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .dropdown-menu {
+      min-width: 150px;
+    }
   </style>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Agency Dashboard</a>
+        <img src="Intelliflow.png" alt="inteli flow logo" width="70" height="45">
+        <a class="navbar-brand" style="font-family: 'Arial', sans-serif;" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="employeeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Employee Management
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="employeeDropdown">
-                            <li><a class="dropdown-item" href="employee directory.html">Employee Directory</a></li>
-                            <li><a class="dropdown-item" href="employee profile.html">Employee Profile</a></li>
-                            <li><a class="dropdown-item" href="assisgn employee.html">Assign Employees</a></li>
-                            <li><a class="dropdown-item" href="employee warnings.html">Employee Warnings</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="attendanceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Attendance
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="attendanceDropdown">
-                            <li><a class="dropdown-item" href="attendance dashbaord.html">Attendance Dashboard</a></li>
-                            <li><a class="dropdown-item" href="mark attendance.html">Attendance Marking</a></li>
-                            <li><a class="dropdown-item" href="attendance correction request.html">Attendance Correction Request</a></li>
-                            <li><a class="dropdown-item" href="attendance report.html">Attendance Reports</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">💰 Payroll</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">📊 Reports</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">⚙️ Settings</a></li>
-                </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="employeeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Employee Management
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="employeeDropdown">
+                        <li><a class="dropdown-item" href="employee directory.html">Employee Directory</a></li>
+                        <li><a class="dropdown-item" href="employee profile.html">Employee Profile</a></li>
+                        <li><a class="dropdown-item" href="assisgn employee.html">Assign Employees</a></li>
+                        <li><a class="dropdown-item" href="employee warnings.html">Employee Warnings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="attendanceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Attendance
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="attendanceDropdown">
+                        <li><a class="dropdown-item" href="attendance dashbaord.html">Attendance Dashboard</a></li>
+                        <li><a class="dropdown-item" href="mark attendance.html">Attendance Marking</a></li>
+                        <li><a class="dropdown-item" href="attendance correction request.html">Attendance Correction Request</a></li>
+                        <li><a class="dropdown-item" href="attendance report.html">Attendance Reports</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Reports</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -114,78 +146,99 @@
     <p class="lead">Manage and view all employee details in one place.</p>
   </div>
 
-  <!-- Search and Filter Section -->
-  <div class="container">
-    <div class="search-filter-container">
-      <div class="row">
-        <div class="col-md-6">
-          <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, ID, Client, Role...">
-        </div>
-        <div class="col-md-2">
-          <select id="statusFilter" class="form-control">
-            <option value="">All Status</option>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-            <option value="Blacklisted">Blacklisted</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-primary w-100" id="bulkUploadBtn">
-            <i class="fas fa-upload"></i> Bulk Upload
-          </button>
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-success w-100" id="exportCsvBtn">
-            <i class="fas fa-download"></i> Export CSV
-          </button>
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <div class="main-content">
+      <!-- Search and Filter Section -->
+      <div class="search-filter-container">
+        <div class="row">
+          <div class="col-md-4">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, ID, Client, Role...">
+          </div>
+          <div class="col-md-2">
+            <select id="statusFilter" class="form-control">
+              <option value="">All Status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Blacklisted">Blacklisted</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="locationFilter" class="form-control">
+              <option value="">All Locations</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Delhi">Delhi</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="file" id="bulkUploadInput" style="display: none;" accept=".csv, .xlsx">
+            <button class="btn btn-primary w-100" id="bulkUploadBtn">
+              <i class="fas fa-upload"></i> Bulk Upload
+            </button>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown">
+              <button class="btn btn-success w-100 dropdown-toggle" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-download"></i> Export
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                <li><a class="dropdown-item" href="#" id="exportCsvBtn">Export CSV</a></li>
+                <li><a class="dropdown-item" href="#" id="exportPdfBtn">Export PDF</a></li>
+                <li><a class="dropdown-item" href="#" id="exportExcelBtn">Export Excel</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Employee Table -->
-    <div class="employee-table">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th data-sort="id">ID <i class="fas fa-sort"></i></th>
-            <th data-sort="name">Name <i class="fas fa-sort"></i></th>
-            <th data-sort="email">Email <i class="fas fa-sort"></i></th>
-            <th data-sort="phone">Phone <i class="fas fa-sort"></i></th>
-            <th data-sort="client">Client <i class="fas fa-sort"></i></th>
-            <th data-sort="role">Role <i class="fas fa-sort"></i></th>
-            <th data-sort="joiningDate">Joining Date <i class="fas fa-sort"></i></th>
-            <th data-sort="status">Status <i class="fas fa-sort"></i></th>
-          </tr>
-        </thead>
-        <tbody id="employeeTableBody">
-          <!-- Employee data will be populated here -->
-        </tbody>
-      </table>
-    </div>
+      <!-- Employee Table -->
+      <div class="employee-table-container">
+        <table class="employee-table table table-hover">
+          <thead>
+            <tr>
+              <th data-sort="id">ID <i class="fas fa-sort"></i></th>
+              <th data-sort="name">Name <i class="fas fa-sort"></i></th>
+              <th data-sort="email">Email <i class="fas fa-sort"></i></th>
+              <th data-sort="phone">Phone <i class="fas fa-sort"></i></th>
+              <th data-sort="client">Client <i class="fas fa-sort"></i></th>
+              <th data-sort="role">Role <i class="fas fa-sort"></i></th>
+              <th data-sort="location">Location <i class="fas fa-sort"></i></th>
+              <th data-sort="joiningDate">Joining Date <i class="fas fa-sort"></i></th>
+              <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody id="employeeTableBody">
+            <!-- Employee data will be populated here -->
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Pagination -->
-    <nav aria-label="Page navigation">
-      <ul class="pagination" id="pagination">
-        <!-- Pagination links will be populated here -->
-      </ul>
-    </nav>
+      <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination">
+          <!-- Pagination links will be populated here -->
+        </ul>
+      </nav>
+    </div>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const employees = [
-      { id: 1, name: "John Doe", email: "john.doe@example.com", phone: "+1234567890", client: "Client A", role: "Developer", joiningDate: "2023-01-15", status: "Active" },
-      { id: 2, name: "Jane Smith", email: "jane.smith@example.com", phone: "+0987654321", client: "Client B", role: "Designer", joiningDate: "2023-02-20", status: "Inactive" },
-      { id: 3, name: "Alice Johnson", email: "alice.johnson@example.com", phone: "+1122334455", client: "Client C", role: "Manager", joiningDate: "2023-03-25", status: "Blacklisted" },
-      { id: 4, name: "Bob Brown", email: "bob.brown@example.com", phone: "+5566778899", client: "Client A", role: "Tester", joiningDate: "2023-04-10", status: "Active" },
-      { id: 5, name: "Charlie Davis", email: "charlie.davis@example.com", phone: "+9988776655", client: "Client B", role: "Analyst", joiningDate: "2023-05-15", status: "Inactive" },
-      { id: 6, name: "Eve White", email: "eve.white@example.com", phone: "+1122337788", client: "Client C", role: "Developer", joiningDate: "2023-06-20", status: "Active" }
+      { id: 1, name: "John Doe", email: "john.doe@example.com", phone: "+1234567890", client: "Client A", role: "Developer", location: "Mumbai", joiningDate: "2023-01-15", status: "Active" },
+      { id: 2, name: "Jane Smith", email: "jane.smith@example.com", phone: "+0987654321", client: "Client B", role: "Designer", location: "Hyderabad", joiningDate: "2023-02-20", status: "Inactive" },
+      { id: 3, name: "Alice Johnson", email: "alice.johnson@example.com", phone: "+1122334455", client: "Client C", role: "Manager", location: "Delhi", joiningDate: "2023-03-25", status: "Blacklisted" },
+      { id: 4, name: "Bob Brown", email: "bob.brown@example.com", phone: "+5566778899", client: "Client A", role: "Tester", location: "Mumbai", joiningDate: "2023-04-10", status: "Active" },
+      { id: 5, name: "Charlie Davis", email: "charlie.davis@example.com", phone: "+9988776655", client: "Client B", role: "Analyst", location: "Hyderabad", joiningDate: "2023-05-15", status: "Inactive" },
+      { id: 6, name: "Eve White", email: "eve.white@example.com", phone: "+1122337788", client: "Client C", role: "Developer", location: "Delhi", joiningDate: "2023-06-20", status: "Active" }
     ];
 
     const employeeTableBody = document.getElementById('employeeTableBody');
     const searchInput = document.getElementById('searchInput');
     const statusFilter = document.getElementById('statusFilter');
+    const locationFilter = document.getElementById('locationFilter');
     const pagination = document.getElementById('pagination');
     const rowsPerPage = 5;
     let currentPage = 1;
@@ -205,6 +258,7 @@
           <td>${emp.phone}</td>
           <td>${emp.client}</td>
           <td>${emp.role}</td>
+          <td>${emp.location}</td>
           <td>${emp.joiningDate}</td>
           <td class="status-${emp.status.toLowerCase()}">${emp.status}</td>
         </tr>
@@ -233,12 +287,15 @@
     function filteredEmployees() {
       const searchTerm = searchInput.value.toLowerCase();
       const status = statusFilter.value;
+      const location = locationFilter.value;
+
       return employees
         .filter(emp =>
           (emp.name.toLowerCase().includes(searchTerm) ||
-           emp.client.toLowerCase().includes(searchTerm) ||
-           emp.role.toLowerCase().includes(searchTerm)) &&
-          (status === "" || emp.status === status)
+          emp.client.toLowerCase().includes(searchTerm) ||
+          emp.role.toLowerCase().includes(searchTerm)) &&
+          (status === "" || emp.status === status) &&
+          (location === "" || emp.location === location)
         )
         .sort((a, b) => {
           if (a[sortColumn] < b[sortColumn]) return sortDirection === "asc" ? -1 : 1;
@@ -268,11 +325,37 @@
       renderEmployees(filteredEmployees(), currentPage);
     });
 
+    locationFilter.addEventListener('change', () => {
+      currentPage = 1;
+      renderEmployees(filteredEmployees(), currentPage);
+    });
+
     document.getElementById('bulkUploadBtn').addEventListener('click', () => {
-      alert('Bulk upload functionality will be implemented here.');
+      document.getElementById('bulkUploadInput').click();
+    });
+
+    document.getElementById('bulkUploadInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const data = event.target.result;
+          // Parse CSV or Excel file and add employees to the list
+          alert('Bulk upload functionality will be implemented here.');
+        };
+        reader.readAsText(file);
+      }
     });
 
     document.getElementById('exportCsvBtn').addEventListener('click', exportToCsv);
+
+    document.getElementById('exportPdfBtn').addEventListener('click', () => {
+      alert('PDF export functionality will be implemented here.');
+    });
+
+    document.getElementById('exportExcelBtn').addEventListener('click', () => {
+      alert('Excel export functionality will be implemented here.');
+    });
 
     document.querySelectorAll('.employee-table th').forEach(header => {
       header.addEventListener('click', () => {
